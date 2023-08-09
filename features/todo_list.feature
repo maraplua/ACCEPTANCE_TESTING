@@ -25,6 +25,14 @@ Feature: To-Do List Manager
     When the user marks task "Buy groceries" as completed
     Then the to-do list should show task "Buy groceries" as completed
 
+  Scenario: Remove a task from the to-do list
+  Given the to-do list contains tasks:
+    | Task         |
+    | Buy groceries |
+    | Pay bills    |
+  When the user removes task "Buy groceries"
+  Then the to-do list should not contain "Buy groceries"
+
   Scenario: Clear the entire to-do list
     Given the to-do list contains tasks:
       | Task       |
