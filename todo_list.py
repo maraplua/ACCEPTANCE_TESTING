@@ -22,6 +22,7 @@ class ToDoListManager:
             if task.name == task_name:
                 task.status = 'Completed'
                 break
+            
     def remove_task(self, task_name):
         self.tasks = [task for task in self.tasks if task.name != task_name]
 

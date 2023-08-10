@@ -7,36 +7,37 @@ Feature: To-Do List Manager
 
   Scenario: List all tasks in the to-do list
     Given the to-do list contains tasks:
-      | Task       |
+      | Task        |
       | Buy groceries |
-      | Pay bills  |
+      | Pay bills    |
     When the user lists all tasks
     Then the output should contain:
       """
       Tasks:
-      - Buy groceries
-      - Pay bills
+      - Buy groceries (Pending)
+      - Pay bills (Pending)
       """
 
   Scenario: Mark a task as completed
     Given the to-do list contains tasks:
-      | Task         | Status   |
-      | Buy groceries | Pending  |
+      | Task        |
+      | Buy groceries |
     When the user marks task "Buy groceries" as completed
     Then the to-do list should show task "Buy groceries" as completed
 
   Scenario: Remove a task from the to-do list
-  Given the to-do list contains tasks:
-    | Task         |
-    | Buy groceries |
-    | Pay bills    |
-  When the user removes task "Buy groceries"
-  Then the to-do list should not contain "Buy groceries"
+    Given the to-do list contains tasks:
+      | Task        |
+      | Buy groceries |
+      | Pay bills    |
+    When the user removes task "Buy groceries"
+    Then the to-do list should not contain "Buy groceries"
+    And the to-do list should contain "Pay bills"
 
   Scenario: Clear the entire to-do list
     Given the to-do list contains tasks:
-      | Task       |
+      | Task        |
       | Buy groceries |
-      | Pay bills  |
+      | Pay bills    |
     When the user clears the to-do list
     Then the to-do list should be empty
